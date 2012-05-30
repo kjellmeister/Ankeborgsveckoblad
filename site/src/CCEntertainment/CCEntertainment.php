@@ -43,8 +43,6 @@ class CCEntertainment extends CObject implements IController
   }
   public function Home()
   {
-  	    
-	    
 	    $getNews = new CMContent();
 	    $newsRSS = $this->getFeed("http://expressen.se/rss/nyheter ");
 
@@ -61,6 +59,20 @@ class CCEntertainment extends CObject implements IController
                   'isAuthenticated' => $this->session->userIsAuthenticated(),
                   'heading' => 'Latest news:',
                 )); 
+  }
+  public function About()
+  {
+  	  $newsRSS = $this->getFeed("http://expressen.se/rss/nyheter ");
+
+	    $this->addFeatured();
+	    $this->views->SetTitle('Den roligaste nyhetssidan')
+	    ->AddInclude(__DIR__ . '/sidebarRSS.tpl.php', array(
+	    	    'news' => $newsRSS,
+	    	    'rubrik' => "Senaste från Expressen",),
+	    	    'sidebar')
+	    ->AddStyle('#sidebar{background-color:#EEE;}')
+	   
+	    ->AddInclude(__DIR__ . '/about.tpl.php', array());
   }
 
   function getFeed($feed_url)

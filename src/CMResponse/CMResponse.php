@@ -104,7 +104,7 @@ class CMResponse extends CObject implements IHasSQL, IModule
    * Delete all entries from the guestbook and database.
    */
   public function DeleteAll() {
-    $this->db->ExecuteQuery(self::SQL('delete from guestbook'));
+    $this->db->ExecuteQuery(self::SQL('delete from response'));
     $this->session->AddMessage('info', 'Removed all messages.');
   }
   

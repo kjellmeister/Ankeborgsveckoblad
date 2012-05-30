@@ -64,7 +64,7 @@ array
   'me'		=> array('enabled' => true, 'class' => 'CCMycontroller', 'url'=> '0'/*array('me'=>'me', 'guestbook'=>'me/guestbook', 'blog'=>'me/blog')*/),
   
   'entertainment'=> array('enabled' => true, 'class' => 'CCEntertainment', 
-  	  'url'=> array('Home'=>'entertainment/Home', 'Sport' => 'entertainment/Sport', 'Entertainment' => 'entertainment/Entertainment', 'Local' => 'entertainment/Local', 'Forum'=>'entertainment/forum')),
+  	  'url'=> array('Home'=>'entertainment/Home', 'Sport' => 'entertainment/Sport', 'Entertainment' => 'entertainment/Entertainment', 'Local' => 'entertainment/Local', 'Forum'=>'entertainment/forum' , 'About' => 'entertainment/about')),
 );
 
 $ly->config['theme'] = array(
