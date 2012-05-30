@@ -151,7 +151,7 @@ class CMContent extends CObject implements IHasSQL, ArrayAccess, IModule
   	  }
 	  if(empty($res))
 	  {
-	  	  $this->AddMessage('error', "Failed to load content with tag ".$args['tag']);
+	  	  //$this->AddMessage('error', "Failed to load content with tag ".$args['tag']);
 	  	  return false;
 	  }
 	  else

@@ -4,9 +4,12 @@
 <hr>
 <h5>
 	<?php
-	for($i=0 ; $i<sizeof($news) && $i<3 ; $i++)
+	if(isset($news[0]['id']))
 	{
-		echo "<a name='white' class='white 'href=". create_url("entertainment/show/".$news[$i]['id']) .">- ". esc($news[$i]['title'])."</a></br>";
+		for($i=0 ; $i<sizeof($news) && $i<3 ; $i++)
+		{
+			echo "<a name='white' class='white 'href=". create_url("entertainment/show/".$news[$i]['id']) .">- ". esc($news[$i]['title'])."</a></br>";
+		}
 	}
 	?>
 </h5>

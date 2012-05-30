@@ -277,36 +277,38 @@ class CCEntertainment extends CObject implements IController
     $this->Edit($type);
   }
 
-  public function show($newsId, $newstype=null)
+  public function show($newsId=null, $newstype=null)
   {
-    $content = new CMContent($newsId);
-    //$related = new CMContent();
-    $comments = new CMResponse();
-    $commentsForm = new CFormResponse('entertainment/show', $this->session->getUserName(), $comments, $newsId);
-    $status = $commentsForm->Check();
-    if($status === false)
+    if($newsId!=null)
     {
-      $this->AddMessage('notice', 'The form could not be processed.');
-      $this->RedirectToControllerMethod($newsId, $newstype);
-    }
-    else if($status === true)
-    {
-      $this->RedirectToControllerMethod($newsId, $newstype);
-    }
-    
-    $this->views->SetTitle('Nyheter')
-                ->AddInclude(__DIR__ . '/singleNews.tpl.php', array(
-                  'news' => $content,
-                  'isAuthenticated' => $this->session->userIsAuthenticated(),
-                  'commentsForm' => $commentsForm,
-                  'comments' => $comments->readAll($newsId),
-                ));
-    /*$related = new CMContent();
-    $this->views->AddInclude(__DIR__ . '/sidebarRelated.tpl.php', array(
-                   'related' => $related->ListByTagAndType(array('tag'=>$newstype, 'type'=>'news', 'order-by'=>'title', 'order-order'=>'DESC')),),
-                   'sidebar')
-                 ->AddStyle('#sidebar{background-color:#EEE;}');*/     
-    
+	    $content = new CMContent($newsId);
+	    //$related = new CMContent();
+	    $comments = new CMResponse();
+	    $commentsForm = new CFormResponse('entertainment/show', $this->session->getUserName(), $comments, $newsId);
+	    $status = $commentsForm->Check();
+	    if($status === false)
+	    {
+	      $this->AddMessage('notice', 'The form could not be processed.');
+	      $this->RedirectToControllerMethod($newsId, $newstype);
+	    }
+	    else if($status === true)
+	    {
+	      $this->RedirectToControllerMethod($newsId, $newstype);
+	    }
+	    
+	    $this->views->SetTitle('Nyheter')
+			->AddInclude(__DIR__ . '/singleNews.tpl.php', array(
+			  'news' => $content,
+			  'isAuthenticated' => $this->session->userIsAuthenticated(),
+			  'commentsForm' => $commentsForm,
+			  'comments' => $comments->readAll($newsId),
+			));
+	    /*$related = new CMContent();
+	    $this->views->AddInclude(__DIR__ . '/sidebarRelated.tpl.php', array(
+			   'related' => $related->ListByTagAndType(array('tag'=>$newstype, 'type'=>'news', 'order-by'=>'title', 'order-order'=>'DESC')),),
+			   'sidebar')
+			 ->AddStyle('#sidebar{background-color:#EEE;}');*/     
+    }	    
   }
   
 }
@@ -365,7 +367,7 @@ class CFormCreateNewContent extends CForm
   public function DoDelete($form, $content) {
     $content['id'] = $form['id']['value'];
     $content->Delete();
-    CLydia::Instance()->RedirectTo('content');
+    CLydia::Instance()->RedirectTo('entertainment/home');
   }
   
   
